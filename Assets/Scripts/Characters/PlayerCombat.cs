@@ -6,41 +6,32 @@ public class PlayerCombat : MonoBehaviour
 {
     //Assingables
     public Transform attackPoint;
-    public LayerMask enemyLayers;
 
     //Other
     private Rigidbody2D rb;
     private PlayerStates playerStates;
 
     //Attacking
-    public float attackDamage;
+    public int attackDamage;
     public float attackRange;
 
     //Input
-    private bool attacking, healing;
+    private bool attacking;
 
 
-    void Awake() {
+    void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         playerStates = GetComponent<PlayerStates>();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Movement();
     }
 
-    void Update() {
-        MyInput();
-    }
-
-    /// <summary>
-    /// Find user input
-    /// </summary>
-    private void MyInput() {
-        attacking = Input.GetMouseButton(0);
-    }
-
-    private void Movement() {
+    private void Movement()
+    {
         //Attacking
         if (Input.GetMouseButton(0) && attacking == false) { 
             StartCoroutine(AttackOrder());
@@ -68,8 +59,9 @@ public class PlayerCombat : MonoBehaviour
         yield break;
     }
 
-    public void Attack() {
-        Collider2D[] hitResults = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRange, enemyLayers);
+    public void Attack()
+    {
+        Collider2D[] hitResults = Physics2D.OverlapCircleAll(attackPoint.transform.position, attackRange);
 
         if (hitResults == null)
             return;
@@ -77,7 +69,7 @@ public class PlayerCombat : MonoBehaviour
         {
             var Damageable = hit.GetComponent<IDamageable>();
             if (Damageable == null) return;
-            Damageable.TakeDamage();
+            Damageable.TakeDamage(attackDamage);
         }
     }
 

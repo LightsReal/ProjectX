@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IDamageable
+public class Health : MonoBehaviour
 {   
-    public virtual void TakeDamage()
+    public int health;
+
+    public virtual void Damage()
     {
         
     }
-
 }
