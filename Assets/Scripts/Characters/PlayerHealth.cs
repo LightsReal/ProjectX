@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
-    public override void Damage()
+    public override void TakeDamage(int damage)
     {
-        base.Damage();
-        
+        base.TakeDamage(damage);
     }
 }

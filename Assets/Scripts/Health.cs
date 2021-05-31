@@ -6,8 +6,8 @@ public class Health : MonoBehaviour
 {   
     public int health;
 
-    public virtual void Damage()
+    public virtual void TakeDamage(int damage)
     {
-        
+        health -= damage;
     }
 }

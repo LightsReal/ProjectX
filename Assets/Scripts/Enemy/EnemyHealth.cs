@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : Health, IDamageable
+public class EnemyHealth : Health, IDamageable<int>
 {
-    public override void Damage()
+    public override void TakeDamage(int damage)
     {
-        base.Damage();
-        
-    }
-    
-    void IDamageable.TakeDamage(int damage)
-    {
-        health =- damage;
+        base.TakeDamage(damage);
     }
 }

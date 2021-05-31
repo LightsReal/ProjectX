@@ -67,9 +67,13 @@ public class PlayerCombat : MonoBehaviour
             return;
         foreach (Collider2D hit in hitResults)
         {
-            var Damageable = hit.GetComponent<IDamageable>();
-            if (Damageable == null) return;
-            Damageable.TakeDamage(attackDamage);
+            var Damageable = hit.GetComponent<IDamageable<int>>();
+            if (Damageable == null) 
+                return;
+            else
+            {
+                Damageable.TakeDamage(attackDamage);
+            }
         }
     }
 
